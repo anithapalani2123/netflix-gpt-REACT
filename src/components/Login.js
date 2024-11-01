@@ -7,6 +7,7 @@ import { auth } from '../utils/firebase';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
+import { user_avatar } from '../utils/constants';
 
 const Login = () => {
 
@@ -63,7 +64,7 @@ const Login = () => {
           // Signed up 
           const user = userCredential.user;
           updateProfile(user, {
-            displayName:name.current.value, photoURL: "https://www.petsworld.in/blog/wp-content/uploads/2015/02/teddybear1.jpg"
+            displayName:name.current.value, photoURL: user_avatar
           }).then(() => {
             const {uid,email,displayName,photoURL} = auth.currentUser;
               dispatch(addUser({uid:uid , email:email , displayName: displayName,photoURL:photoURL}));
